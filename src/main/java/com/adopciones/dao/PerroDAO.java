@@ -1,5 +1,6 @@
 package com.adopciones.dao;
 
+import com.adopciones.enums.EstadoPerro;
 import com.adopciones.model.Perro;
 
 import java.sql.Connection;
@@ -24,7 +25,7 @@ public class PerroDAO {
             ps.setString(6, perro.getPorte());
             ps.setDouble(7, perro.getPeso());
             ps.setString(8, perro.getTemperamento());
-            ps.setString(9, perro.getEstado());
+            ps.setString(9, perro.getEstado().name());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error al guardar perro", e);
@@ -48,7 +49,7 @@ public class PerroDAO {
                         rs.getString("porte"),
                         rs.getDouble("peso"),
                         rs.getString("temperamento"),
-                        rs.getString("estado")
+                        EstadoPerro.valueOf(rs.getString("estado"))
                 ));
             }
         } catch (SQLException e) {
@@ -76,7 +77,7 @@ public class PerroDAO {
                         rs.getString("porte"),
                         rs.getDouble("peso"),
                         rs.getString("temperamento"),
-                        rs.getString("estado")
+                        EstadoPerro.valueOf(rs.getString("estado"))
                 );
             }
         } catch (SQLException e) {
@@ -86,12 +87,12 @@ public class PerroDAO {
         return null;
     }
 
-    public void actualizarEstado(int idPerro, String estado) {
+    public void actualizarEstado(int idPerro, EstadoPerro estado) {
         String sql = "UPDATE perros SET estado = ? WHERE id = ?";
 
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, estado);
+            ps.setString(1, estado.name());
             ps.setInt(2, idPerro);
             ps.executeUpdate();
         } catch (SQLException e) {

@@ -1,12 +1,14 @@
 package com.adopciones.model;
 
+import com.adopciones.enums.TipoUsuario;
+
 public class Adoptante extends Usuario {
     private String telefono;
     private String email;
     private String domicilio;
 
     public Adoptante(int id, String nombre, String dni, String telefono, String email, String domicilio) {
-        super(id, nombre, dni, "Adoptante");
+        super(id, nombre, dni, TipoUsuario.ADOPTANTE);
         this.telefono = telefono;
         this.email = email;
         this.domicilio = domicilio;

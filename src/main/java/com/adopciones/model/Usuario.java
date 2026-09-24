@@ -1,16 +1,18 @@
 package com.adopciones.model;
 
+import com.adopciones.enums.TipoUsuario;
+
 public abstract class Usuario {
     protected int id;
     protected String nombre;
     protected String dni;
-    protected String rol;
+    protected TipoUsuario tipoUsuario;
 
-    public Usuario(int id, String nombre, String dni, String rol) {
+    public Usuario(int id, String nombre, String dni, TipoUsuario tipoUsuario) {
         this.id = id;
         this.nombre = nombre;
         this.dni = dni;
-        this.rol = rol;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public int getId() {
@@ -37,11 +39,15 @@ public abstract class Usuario {
         this.dni = dni;
     }
 
-    public String getRol() {
-        return rol;
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public String getRol() {
+        return tipoUsuario.name();
     }
 }

@@ -4,6 +4,7 @@ import com.adopciones.dao.AdopcionDAO;
 import com.adopciones.dao.AdoptanteDAO;
 import com.adopciones.dao.ConexionDB;
 import com.adopciones.dao.PerroDAO;
+import com.adopciones.enums.EstadoPerro;
 import com.adopciones.model.Administrador;
 import com.adopciones.model.Adoptante;
 import com.adopciones.model.Perro;
@@ -46,12 +47,12 @@ public class Main {
 
         perroService.registrarPerro(new Perro(
                 1, "Luna", 2, LocalDate.of(2024, 1, 15),
-                "Labrador", "Mediano", 25.0, "Sociable", "Disponible"
+                "Labrador", "Mediano", 25.0, "Sociable", EstadoPerro.DISPONIBLE
         ));
 
         perroService.registrarPerro(new Perro(
                 2, "Max", 4, LocalDate.of(2023, 6, 10),
-                "Pastor Alemán", "Grande", 30.0, "Protector", "Disponible"
+                "Pastor Alemán", "Grande", 30.0, "Protector", EstadoPerro.DISPONIBLE
         ));
 
         adoptanteService.registrarAdoptante(new Adoptante(

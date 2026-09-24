@@ -1,5 +1,7 @@
 package com.adopciones.model;
 
+import com.adopciones.enums.EstadoSolicitud;
+
 import java.time.LocalDate;
 
 public class Solicitud {
@@ -7,16 +9,20 @@ public class Solicitud {
     private int idPerro;
     private int idAdoptante;
     private LocalDate fecha;
-    private String estado;
+    private EstadoSolicitud estado;
     private String motivoRechazo;
 
-    public Solicitud(int id, int idPerro, int idAdoptante, LocalDate fecha, String estado, String motivoRechazo) {
+    public Solicitud(int id, int idPerro, int idAdoptante, LocalDate fecha, EstadoSolicitud estado, String motivoRechazo) {
         this.id = id;
         this.idPerro = idPerro;
         this.idAdoptante = idAdoptante;
         this.fecha = fecha;
         this.estado = estado;
         this.motivoRechazo = motivoRechazo;
+    }
+
+    public Solicitud(int id, int idPerro, int idAdoptante, LocalDate fecha, String estado, String motivoRechazo) {
+        this(id, idPerro, idAdoptante, fecha, EstadoSolicitud.valueOf(estado.toUpperCase().replace(' ', '_')), motivoRechazo);
     }
 
     public int getId() {
@@ -35,11 +41,11 @@ public class Solicitud {
         return fecha;
     }
 
-    public String getEstado() {
+    public EstadoSolicitud getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoSolicitud estado) {
         this.estado = estado;
     }
 

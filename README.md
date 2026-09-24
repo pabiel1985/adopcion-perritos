@@ -11,6 +11,13 @@ El sistema permite gestionar:
 - observaciones del proceso
 - usuarios del sistema por roles: Administrador, Recepcionista y Adoptante
 
+## Enums del proyecto
+Se incorporaron los enums principales del dominio:
+- `TipoUsuario`
+- `EstadoPerro`
+- `EstadoSolicitud`
+- `EstadoAdopcion`
+
 ## Requisitos cumplidos
 - Herencia
 - Polimorfismo
@@ -38,6 +45,7 @@ El sistema permite gestionar:
 - `dao`: acceso a datos con JDBC
 - `service`: lógica de negocio
 - `ui`: menú principal interactivo
+- `enums`: constantes del dominio
 
 ## Ejecución
 ```bash

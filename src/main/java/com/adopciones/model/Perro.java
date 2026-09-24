@@ -1,5 +1,6 @@
 package com.adopciones.model;
 
+import com.adopciones.enums.EstadoPerro;
 import com.adopciones.interfaces.Adoptable;
 
 import java.time.LocalDate;
@@ -9,11 +10,11 @@ public class Perro extends Animal implements Adoptable {
     private String porte;
     private double peso;
     private String temperamento;
-    private String estado;
+    private EstadoPerro estado;
 
     public Perro(int id, String nombre, int edad, LocalDate fechaRescate,
                  String raza, String porte, double peso,
-                 String temperamento, String estado) {
+                 String temperamento, EstadoPerro estado) {
         super(id, nombre, edad, fechaRescate);
         this.raza = raza;
         this.porte = porte;
@@ -22,19 +23,26 @@ public class Perro extends Animal implements Adoptable {
         this.estado = estado;
     }
 
+    public Perro(int id, String nombre, int edad, LocalDate fechaRescate,
+                 String raza, String porte, double peso,
+                 String temperamento, String estado) {
+        this(id, nombre, edad, fechaRescate, raza, porte, peso, temperamento,
+                EstadoPerro.valueOf(estado.toUpperCase().replace(' ', '_')));
+    }
+
     @Override
     public boolean puedeSerAdoptado() {
-        return "Disponible".equalsIgnoreCase(estado);
+        return estado.puedeSerAdoptado();
     }
 
     @Override
     public void adoptar() {
-        this.estado = "Adoptado";
+        this.estado = EstadoPerro.ADOPTADO;
     }
 
     @Override
     public void marcarComoNoDisponible() {
-        this.estado = "No disponible";
+        this.estado = EstadoPerro.NO_DISPONIBLE;
     }
 
     @Override
@@ -77,11 +85,11 @@ public class Perro extends Animal implements Adoptable {
         this.temperamento = temperamento;
     }
 
-    public String getEstado() {
+    public EstadoPerro getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoPerro estado) {
         this.estado = estado;
     }
 }

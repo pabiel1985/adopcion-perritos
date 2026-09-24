@@ -1,5 +1,6 @@
 package com.adopciones.ui;
 
+import com.adopciones.enums.EstadoPerro;
 import com.adopciones.model.Adoptante;
 import com.adopciones.model.Perro;
 import com.adopciones.service.AdopcionService;
@@ -81,7 +82,7 @@ public class VistaPrincipal {
         System.out.print("Temperamento: ");
         String temperamento = scanner.nextLine();
 
-        Perro perro = new Perro(id, nombre, edad, LocalDate.now(), raza, porte, peso, temperamento, "Disponible");
+        Perro perro = new Perro(id, nombre, edad, LocalDate.now(), raza, porte, peso, temperamento, EstadoPerro.DISPONIBLE);
         perroService.registrarPerro(perro);
         System.out.println("Perro registrado correctamente.");
     }

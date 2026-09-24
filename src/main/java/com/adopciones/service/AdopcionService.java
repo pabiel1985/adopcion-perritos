@@ -3,6 +3,7 @@ package com.adopciones.service;
 import com.adopciones.dao.AdopcionDAO;
 import com.adopciones.dao.AdoptanteDAO;
 import com.adopciones.dao.PerroDAO;
+import com.adopciones.enums.EstadoPerro;
 import com.adopciones.exceptions.AdopcionInvalidaException;
 import com.adopciones.exceptions.AdoptanteNoEncontradoException;
 import com.adopciones.exceptions.PerroNoDisponibleException;
@@ -30,14 +31,14 @@ public class AdopcionService {
             if (!adoptanteDAO.existe(idAdoptante)) {
                 throw new AdoptanteNoEncontradoException("El adoptante indicado no existe.");
             }
-            if (!"Disponible".equals(perroDAO.buscarPorId(idPerro).getEstado())) {
+            if (perroDAO.buscarPorId(idPerro).getEstado() != EstadoPerro.DISPONIBLE) {
                 throw new PerroNoDisponibleException("El perro no está disponible para adopción.");
             }
 
             int id = adopcionDAO.listarTodos().size() + 1;
             Adopcion adopcion = new Adopcion(id, idPerro, idAdoptante, fecha, estado, "Adopción registrada correctamente");
             adopcionDAO.guardar(adopcion);
-            perroDAO.actualizarEstado(idPerro, "Adoptado");
+            perroDAO.actualizarEstado(idPerro, EstadoPerro.ADOPTADO);
         } catch (AdopcionInvalidaException | AdoptanteNoEncontradoException | PerroNoDisponibleException e) {
             throw new IllegalArgumentException(e.getMessage(), e);
         }

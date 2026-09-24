@@ -1,10 +1,12 @@
 package com.adopciones.model;
 
+import com.adopciones.enums.TipoUsuario;
+
 public class Recepcionista extends Usuario {
     private String sector;
 
     public Recepcionista(int id, String nombre, String dni, String sector) {
-        super(id, nombre, dni, "Recepcionista");
+        super(id, nombre, dni, TipoUsuario.RECEPCIONISTA);
         this.sector = sector;
     }
 

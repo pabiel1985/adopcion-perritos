@@ -1,6 +1,7 @@
 package com.adopciones.service;
 
 import com.adopciones.dao.PerroDAO;
+import com.adopciones.enums.EstadoPerro;
 import com.adopciones.exceptions.PerroNoDisponibleException;
 import com.adopciones.model.Perro;
 
@@ -34,6 +35,6 @@ public class PerroService {
             throw new PerroNoDisponibleException("El perro no está disponible para adopción.");
         }
         perro.adoptar();
-        perroDAO.actualizarEstado(idPerro, perro.getEstado());
+        perroDAO.actualizarEstado(idPerro, EstadoPerro.ADOPTADO);
     }
 }
