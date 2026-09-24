@@ -4,8 +4,10 @@ import com.adopciones.dao.AdopcionDAO;
 import com.adopciones.dao.AdoptanteDAO;
 import com.adopciones.dao.ConexionDB;
 import com.adopciones.dao.PerroDAO;
+import com.adopciones.model.Administrador;
 import com.adopciones.model.Adoptante;
 import com.adopciones.model.Perro;
+import com.adopciones.model.Recepcionista;
 import com.adopciones.service.AdopcionService;
 import com.adopciones.service.AdoptanteService;
 import com.adopciones.service.PerroService;
@@ -26,6 +28,12 @@ public class Main {
         AdopcionService adopcionService = new AdopcionService(adopcionDAO, perroDAO, adoptanteDAO);
 
         cargarDatosIniciales(perroService, adoptanteService);
+
+        Administrador administrador = new Administrador(100, "Carla Mesa", "30111222", "Alta de usuarios, backups, permisos");
+        Recepcionista recepcionista = new Recepcionista(101, "Bruno Díaz", "28111222", "Front Desk");
+
+        System.out.println("Usuario activo: " + administrador.getRol() + " - " + administrador.getNombre());
+        System.out.println("Usuario activo: " + recepcionista.getRol() + " - " + recepcionista.getNombre());
 
         VistaPrincipal vista = new VistaPrincipal(perroService, adoptanteService, adopcionService);
         vista.mostrarMenu();

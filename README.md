@@ -9,6 +9,7 @@ El sistema permite gestionar:
 - solicitudes de adopción
 - adopciones efectivas
 - observaciones del proceso
+- usuarios del sistema por roles: Administrador, Recepcionista y Adoptante
 
 ## Requisitos cumplidos
 - Herencia
@@ -23,6 +24,11 @@ El sistema permite gestionar:
 - Clase genérica
 - JDBC con base de datos en memoria
 - Documentación y código ordenado
+
+## Usuarios del sistema
+- `Administrador`: administra usuarios, permisos y backups.
+- `Recepcionista`: atiende el ingreso de perros y adoptantes y gestiona las solicitudes.
+- `Adoptante`: realiza la solicitud y adopción de un perro.
 
 ## Estructura principal
 - `model`: entidades del sistema
